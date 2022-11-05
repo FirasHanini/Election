@@ -90,3 +90,11 @@ on_ajouter_younes_clicked              (GtkButton       *button,
 void
 on_supprimer_younes_clicked            (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_buttonSupprimer_obs_clicked         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_buttonEnrg_obs_clicked              (GtkButton       *button,
+                                        gpointer         user_data);

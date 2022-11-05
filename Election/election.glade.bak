@@ -426,8 +426,8 @@
 	  <property name="angle">0</property>
 	</widget>
 	<packing>
-	  <property name="x">103</property>
-	  <property name="y">80</property>
+	  <property name="x">266</property>
+	  <property name="y">38</property>
 	</packing>
       </child>
 
@@ -450,7 +450,7 @@
 	      <property name="editable">True</property>
 	      <property name="visibility">True</property>
 	      <property name="max_length">0</property>
-	      <property name="text" translatable="yes"></property>
+	      <property name="text" translatable="yes">Liste electoral</property>
 	      <property name="has_frame">True</property>
 	      <property name="invisible_char">•</property>
 	      <property name="activates_default">False</property>
@@ -473,8 +473,8 @@
 	  </child>
 	</widget>
 	<packing>
-	  <property name="x">93</property>
-	  <property name="y">114</property>
+	  <property name="x">253</property>
+	  <property name="y">83</property>
 	</packing>
       </child>
 
@@ -491,8 +491,65 @@
 	  <signal name="clicked" handler="on_bouton_vote_clicked" last_modification_time="Mon, 31 Oct 2022 18:53:15 GMT"/>
 	</widget>
 	<packing>
-	  <property name="x">144</property>
-	  <property name="y">176</property>
+	  <property name="x">301</property>
+	  <property name="y">520</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkTreeView" id="liste_choisi">
+	  <property name="width_request">352</property>
+	  <property name="height_request">216</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="headers_visible">True</property>
+	  <property name="rules_hint">False</property>
+	  <property name="reorderable">False</property>
+	  <property name="enable_search">True</property>
+	  <property name="fixed_height_mode">False</property>
+	  <property name="hover_selection">False</property>
+	  <property name="hover_expand">False</property>
+	</widget>
+	<packing>
+	  <property name="x">192</property>
+	  <property name="y">192</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkCheckButton" id="check_liste">
+	  <property name="width_request">282</property>
+	  <property name="height_request">24</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Je confirm le vote pour cette liste</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	  <property name="active">False</property>
+	  <property name="inconsistent">False</property>
+	  <property name="draw_indicator">True</property>
+	</widget>
+	<packing>
+	  <property name="x">200</property>
+	  <property name="y">464</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="bouton_choix_liste">
+	  <property name="width_request">74</property>
+	  <property name="height_request">29</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="label" translatable="yes">Choisir</property>
+	  <property name="use_underline">True</property>
+	  <property name="relief">GTK_RELIEF_NORMAL</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">288</property>
+	  <property name="y">136</property>
 	</packing>
       </child>
     </widget>

@@ -34,8 +34,7 @@ on_buttonSupprimer_user_clicked        (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_buttonValider_user_clicked          (GtkButton       *button,
-                                        gpointer         user_data);
+on_buttonValider_user_clicked          (GtkWidget *objet_graphique, gpointer user_data);
 
 void
 on_buttonAjouter_rec_clicked           (GtkButton       *button,
@@ -97,4 +96,20 @@ on_buttonSupprimer_obs_clicked         (GtkButton       *button,
 
 void
 on_buttonEnrg_obs_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobuttonFemme_user_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbuttonTun_user_toggled         (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbuttonEtranger_user_toggled    (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_radiobuttonHomme_user_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data);

@@ -247,7 +247,6 @@ create_vote_liste (void)
 
   liste_vote1 = GTK_COMBO (liste_vote)->entry;
   gtk_widget_show (liste_vote1);
-  gtk_entry_set_text (GTK_ENTRY (liste_vote1), _("Liste electoral"));
   gtk_entry_set_invisible_char (GTK_ENTRY (liste_vote1), 8226);
 
   bouton_vote = gtk_button_new_with_mnemonic (_("Voter"));
@@ -794,7 +793,6 @@ create_Ajout_user (void)
   GtkWidget *spinbuttonNumBV_user;
   GtkObject *spinbuttonVote_user_adj;
   GtkWidget *spinbuttonVote_user;
-  GtkWidget *labelNom_user;
   GtkWidget *labelPrenom_user;
   GtkWidget *labelDate_user;
   GtkWidget *labelCin_user;
@@ -803,24 +801,22 @@ create_Ajout_user (void)
   GtkWidget *labelNumBV_user;
   GtkWidget *labelVote_user;
   GtkWidget *labelNationnalite_user;
-  GtkWidget *labelProfession_user;
-  GtkWidget *labelApp_politique_user;
-  GtkWidget *radiobuttonHomme_user;
-  GSList *radiobuttonHomme_user_group = NULL;
-  GtkWidget *radiobuttonFemme_user;
-  GtkWidget *comboRole_user;
-  GtkWidget *combo_entryRole_user;
-  GtkWidget *checkbuttonTun_user;
-  GtkWidget *checkbuttonEtranger_user;
-  GtkWidget *comboProfession_user;
-  GtkWidget *combo_entryProfession_user;
-  GtkWidget *comboApp_politique_user;
-  GtkWidget *combo_entryApp_politique_user;
   GtkWidget *buttonValider_user;
   GtkWidget *alignment8;
   GtkWidget *hbox7;
   GtkWidget *image7;
   GtkWidget *label53;
+  GtkWidget *labelApp_politique_user;
+  GtkWidget *labelProfession_user;
+  GtkWidget *radiobuttonFemme_user;
+  GSList *radiobuttonFemme_user_group = NULL;
+  GtkWidget *radiobuttonHomme_user;
+  GtkWidget *labelNom_user;
+  GtkWidget *comboboxRole_user;
+  GtkWidget *comboboxApp_obs;
+  GtkWidget *comboboxProf_obs;
+  GtkWidget *checkbuttonEtranger_obs;
+  GtkWidget *checkbuttonTun_obs;
 
   Ajout_user = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (Ajout_user), _("Ajout_user"));
@@ -866,7 +862,7 @@ create_Ajout_user (void)
   gtk_fixed_put (GTK_FIXED (fixed7), spinbuttonMois_user, 304, 224);
   gtk_widget_set_size_request (spinbuttonMois_user, 60, 27);
 
-  spinbuttonAnnee_user_adj = gtk_adjustment_new (1, 1900, 3000, 1, 10, 10);
+  spinbuttonAnnee_user_adj = gtk_adjustment_new (2000, 1920, 2020, 1, 10, 10);
   spinbuttonAnnee_user = gtk_spin_button_new (GTK_ADJUSTMENT (spinbuttonAnnee_user_adj), 1, 0);
   gtk_widget_show (spinbuttonAnnee_user);
   gtk_fixed_put (GTK_FIXED (fixed7), spinbuttonAnnee_user, 384, 224);
@@ -883,11 +879,6 @@ create_Ajout_user (void)
   gtk_widget_show (spinbuttonVote_user);
   gtk_fixed_put (GTK_FIXED (fixed7), spinbuttonVote_user, 272, 552);
   gtk_widget_set_size_request (spinbuttonVote_user, 60, 27);
-
-  labelNom_user = gtk_label_new (_("Nom:"));
-  gtk_widget_show (labelNom_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), labelNom_user, 80, 96);
-  gtk_widget_set_size_request (labelNom_user, 49, 17);
 
   labelPrenom_user = gtk_label_new (_("Pr\303\251nom:"));
   gtk_widget_show (labelPrenom_user);
@@ -929,80 +920,10 @@ create_Ajout_user (void)
   gtk_fixed_put (GTK_FIXED (fixed7), labelNationnalite_user, 32, 616);
   gtk_widget_set_size_request (labelNationnalite_user, 160, 32);
 
-  labelProfession_user = gtk_label_new (_("Profession:"));
-  gtk_widget_show (labelProfession_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), labelProfession_user, 16, 664);
-  gtk_widget_set_size_request (labelProfession_user, 184, 40);
-
-  labelApp_politique_user = gtk_label_new (_("Appartenance politique:"));
-  gtk_widget_show (labelApp_politique_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), labelApp_politique_user, 48, 720);
-  gtk_widget_set_size_request (labelApp_politique_user, 192, 32);
-
-  radiobuttonHomme_user = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
-  gtk_widget_show (radiobuttonHomme_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), radiobuttonHomme_user, 208, 416);
-  gtk_widget_set_size_request (radiobuttonHomme_user, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobuttonHomme_user), radiobuttonHomme_user_group);
-  radiobuttonHomme_user_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobuttonHomme_user));
-
-  radiobuttonFemme_user = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
-  gtk_widget_show (radiobuttonFemme_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), radiobuttonFemme_user, 392, 416);
-  gtk_widget_set_size_request (radiobuttonFemme_user, 116, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobuttonFemme_user), radiobuttonHomme_user_group);
-  radiobuttonHomme_user_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobuttonFemme_user));
-
-  comboRole_user = gtk_combo_new ();
-  g_object_set_data (G_OBJECT (GTK_COMBO (comboRole_user)->popwin),
-                     "GladeParentKey", comboRole_user);
-  gtk_widget_show (comboRole_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), comboRole_user, 216, 352);
-  gtk_widget_set_size_request (comboRole_user, 187, 27);
-  gtk_combo_set_use_arrows_always (GTK_COMBO (comboRole_user), TRUE);
-
-  combo_entryRole_user = GTK_COMBO (comboRole_user)->entry;
-  gtk_widget_show (combo_entryRole_user);
-  gtk_entry_set_invisible_char (GTK_ENTRY (combo_entryRole_user), 8226);
-
-  checkbuttonTun_user = gtk_check_button_new_with_mnemonic (_("Tunisienne"));
-  gtk_widget_show (checkbuttonTun_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), checkbuttonTun_user, 240, 616);
-  gtk_widget_set_size_request (checkbuttonTun_user, 118, 24);
-
-  checkbuttonEtranger_user = gtk_check_button_new_with_mnemonic (_("Etrang\303\250re"));
-  gtk_widget_show (checkbuttonEtranger_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), checkbuttonEtranger_user, 416, 616);
-  gtk_widget_set_size_request (checkbuttonEtranger_user, 118, 24);
-
-  comboProfession_user = gtk_combo_new ();
-  g_object_set_data (G_OBJECT (GTK_COMBO (comboProfession_user)->popwin),
-                     "GladeParentKey", comboProfession_user);
-  gtk_widget_show (comboProfession_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), comboProfession_user, 240, 672);
-  gtk_widget_set_size_request (comboProfession_user, 187, 27);
-  gtk_combo_set_use_arrows_always (GTK_COMBO (comboProfession_user), TRUE);
-
-  combo_entryProfession_user = GTK_COMBO (comboProfession_user)->entry;
-  gtk_widget_show (combo_entryProfession_user);
-  gtk_entry_set_invisible_char (GTK_ENTRY (combo_entryProfession_user), 8226);
-
-  comboApp_politique_user = gtk_combo_new ();
-  g_object_set_data (G_OBJECT (GTK_COMBO (comboApp_politique_user)->popwin),
-                     "GladeParentKey", comboApp_politique_user);
-  gtk_widget_show (comboApp_politique_user);
-  gtk_fixed_put (GTK_FIXED (fixed7), comboApp_politique_user, 240, 720);
-  gtk_widget_set_size_request (comboApp_politique_user, 187, 27);
-  gtk_combo_set_use_arrows_always (GTK_COMBO (comboApp_politique_user), TRUE);
-
-  combo_entryApp_politique_user = GTK_COMBO (comboApp_politique_user)->entry;
-  gtk_widget_show (combo_entryApp_politique_user);
-  gtk_entry_set_invisible_char (GTK_ENTRY (combo_entryApp_politique_user), 8226);
-
   buttonValider_user = gtk_button_new ();
   gtk_widget_show (buttonValider_user);
   gtk_fixed_put (GTK_FIXED (fixed7), buttonValider_user, 704, 784);
-  gtk_widget_set_size_request (buttonValider_user, 104, 32);
+  gtk_widget_set_size_request (buttonValider_user, 112, 40);
 
   alignment8 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment8);
@@ -1020,8 +941,91 @@ create_Ajout_user (void)
   gtk_widget_show (label53);
   gtk_box_pack_start (GTK_BOX (hbox7), label53, FALSE, FALSE, 0);
 
+  labelApp_politique_user = gtk_label_new (_("Appartenance politique:"));
+  gtk_widget_show (labelApp_politique_user);
+  gtk_fixed_put (GTK_FIXED (fixed7), labelApp_politique_user, 48, 672);
+  gtk_widget_set_size_request (labelApp_politique_user, 192, 32);
+
+  labelProfession_user = gtk_label_new (_("Profession:"));
+  gtk_widget_show (labelProfession_user);
+  gtk_fixed_put (GTK_FIXED (fixed7), labelProfession_user, 40, 720);
+  gtk_widget_set_size_request (labelProfession_user, 184, 40);
+
+  radiobuttonFemme_user = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
+  gtk_widget_show (radiobuttonFemme_user);
+  gtk_fixed_put (GTK_FIXED (fixed7), radiobuttonFemme_user, 392, 416);
+  gtk_widget_set_size_request (radiobuttonFemme_user, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobuttonFemme_user), radiobuttonFemme_user_group);
+  radiobuttonFemme_user_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobuttonFemme_user));
+
+  radiobuttonHomme_user = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
+  gtk_widget_show (radiobuttonHomme_user);
+  gtk_fixed_put (GTK_FIXED (fixed7), radiobuttonHomme_user, 208, 416);
+  gtk_widget_set_size_request (radiobuttonHomme_user, 116, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobuttonHomme_user), radiobuttonFemme_user_group);
+  radiobuttonFemme_user_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobuttonHomme_user));
+
+  labelNom_user = gtk_label_new (_("Nom:"));
+  gtk_widget_show (labelNom_user);
+  gtk_fixed_put (GTK_FIXED (fixed7), labelNom_user, 80, 96);
+  gtk_widget_set_size_request (labelNom_user, 49, 17);
+
+  comboboxRole_user = gtk_combo_box_new_text ();
+  gtk_widget_show (comboboxRole_user);
+  gtk_fixed_put (GTK_FIXED (fixed7), comboboxRole_user, 216, 344);
+  gtk_widget_set_size_request (comboboxRole_user, 184, 32);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxRole_user), _("Observateur"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxRole_user), _("Admin"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxRole_user), _("Agent de bureau de vote "));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxRole_user), _("Electeur "));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxRole_user), _("autres.."));
+
+  comboboxApp_obs = gtk_combo_box_new_text ();
+  gtk_widget_show (comboboxApp_obs);
+  gtk_fixed_put (GTK_FIXED (fixed7), comboboxApp_obs, 248, 672);
+  gtk_widget_set_size_request (comboboxApp_obs, 200, 32);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxApp_obs), _("Droit"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxApp_obs), _("Gauche "));
+
+  comboboxProf_obs = gtk_combo_box_new_text ();
+  gtk_widget_show (comboboxProf_obs);
+  gtk_fixed_put (GTK_FIXED (fixed7), comboboxProf_obs, 248, 720);
+  gtk_widget_set_size_request (comboboxProf_obs, 200, 32);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("Professeur "));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("Journaliste "));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("Etudiant/e"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("El\303\250ve"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("Ingenieur"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("Business man"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("Directeur/ice "));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("Technicien/ne"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("Medecin "));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxProf_obs), _("autres"));
+
+  checkbuttonEtranger_obs = gtk_check_button_new_with_mnemonic (_("Etrang\303\250re"));
+  gtk_widget_show (checkbuttonEtranger_obs);
+  gtk_fixed_put (GTK_FIXED (fixed7), checkbuttonEtranger_obs, 416, 616);
+  gtk_widget_set_size_request (checkbuttonEtranger_obs, 118, 24);
+
+  checkbuttonTun_obs = gtk_check_button_new_with_mnemonic (_("Tunisienne"));
+  gtk_widget_show (checkbuttonTun_obs);
+  gtk_fixed_put (GTK_FIXED (fixed7), checkbuttonTun_obs, 240, 616);
+  gtk_widget_set_size_request (checkbuttonTun_obs, 118, 24);
+
   g_signal_connect ((gpointer) buttonValider_user, "clicked",
                     G_CALLBACK (on_buttonValider_user_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) radiobuttonFemme_user, "toggled",
+                    G_CALLBACK (on_radiobuttonFemme_user_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) radiobuttonHomme_user, "toggled",
+                    G_CALLBACK (on_radiobuttonHomme_user_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) checkbuttonEtranger_obs, "toggled",
+                    G_CALLBACK (on_checkbuttonEtranger_user_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) checkbuttonTun_obs, "toggled",
+                    G_CALLBACK (on_checkbuttonTun_user_toggled),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -1036,7 +1040,6 @@ create_Ajout_user (void)
   GLADE_HOOKUP_OBJECT (Ajout_user, spinbuttonAnnee_user, "spinbuttonAnnee_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, spinbuttonNumBV_user, "spinbuttonNumBV_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, spinbuttonVote_user, "spinbuttonVote_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, labelNom_user, "labelNom_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, labelPrenom_user, "labelPrenom_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, labelDate_user, "labelDate_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, labelCin_user, "labelCin_user");
@@ -1045,23 +1048,21 @@ create_Ajout_user (void)
   GLADE_HOOKUP_OBJECT (Ajout_user, labelNumBV_user, "labelNumBV_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, labelVote_user, "labelVote_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, labelNationnalite_user, "labelNationnalite_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, labelProfession_user, "labelProfession_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, labelApp_politique_user, "labelApp_politique_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, radiobuttonHomme_user, "radiobuttonHomme_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, radiobuttonFemme_user, "radiobuttonFemme_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, comboRole_user, "comboRole_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, combo_entryRole_user, "combo_entryRole_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, checkbuttonTun_user, "checkbuttonTun_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, checkbuttonEtranger_user, "checkbuttonEtranger_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, comboProfession_user, "comboProfession_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, combo_entryProfession_user, "combo_entryProfession_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, comboApp_politique_user, "comboApp_politique_user");
-  GLADE_HOOKUP_OBJECT (Ajout_user, combo_entryApp_politique_user, "combo_entryApp_politique_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, buttonValider_user, "buttonValider_user");
   GLADE_HOOKUP_OBJECT (Ajout_user, alignment8, "alignment8");
   GLADE_HOOKUP_OBJECT (Ajout_user, hbox7, "hbox7");
   GLADE_HOOKUP_OBJECT (Ajout_user, image7, "image7");
   GLADE_HOOKUP_OBJECT (Ajout_user, label53, "label53");
+  GLADE_HOOKUP_OBJECT (Ajout_user, labelApp_politique_user, "labelApp_politique_user");
+  GLADE_HOOKUP_OBJECT (Ajout_user, labelProfession_user, "labelProfession_user");
+  GLADE_HOOKUP_OBJECT (Ajout_user, radiobuttonFemme_user, "radiobuttonFemme_user");
+  GLADE_HOOKUP_OBJECT (Ajout_user, radiobuttonHomme_user, "radiobuttonHomme_user");
+  GLADE_HOOKUP_OBJECT (Ajout_user, labelNom_user, "labelNom_user");
+  GLADE_HOOKUP_OBJECT (Ajout_user, comboboxRole_user, "comboboxRole_user");
+  GLADE_HOOKUP_OBJECT (Ajout_user, comboboxApp_obs, "comboboxApp_obs");
+  GLADE_HOOKUP_OBJECT (Ajout_user, comboboxProf_obs, "comboboxProf_obs");
+  GLADE_HOOKUP_OBJECT (Ajout_user, checkbuttonEtranger_obs, "checkbuttonEtranger_obs");
+  GLADE_HOOKUP_OBJECT (Ajout_user, checkbuttonTun_obs, "checkbuttonTun_obs");
 
   return Ajout_user;
 }

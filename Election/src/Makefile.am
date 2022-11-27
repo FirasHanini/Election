@@ -11,7 +11,8 @@ election_SOURCES = \
 	main.c \
 	support.c support.h \
 	interface.c interface.h \
-	callbacks.c callbacks.h
+	callbacks.c callbacks.h \
+	utilisateur.c utilisateur.h 
 
 election_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 
